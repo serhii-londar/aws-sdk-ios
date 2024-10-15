@@ -54,6 +54,7 @@ awsmtl_propertyAttributes *awsmtl_copyPropertyAttributes (objc_property_t proper
         next = strchr(className, '"');
 
         if (!next) {
+            free(attributes);
             fprintf(stderr, "ERROR: Could not read class name in attribute string \"%s\" for property %s\n", attrString, property_getName(property));
             return NULL;
         }

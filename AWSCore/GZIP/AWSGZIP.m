@@ -72,6 +72,8 @@ static const NSUInteger ChunkSize = 16384;
             deflateEnd(&stream);
             data.length = stream.total_out;
             return data;
+        } else {
+            deflateEnd(&stream);
         }
     }
     return nil;
@@ -89,6 +91,7 @@ static const NSUInteger ChunkSize = 16384;
         z_stream stream;
         stream.zalloc = Z_NULL;
         stream.zfree = Z_NULL;
+        stream.opaque = Z_NULL;
         stream.avail_in = (uint)[self length];
         stream.next_in = (Bytef *)[self bytes];
         stream.total_out = 0;
